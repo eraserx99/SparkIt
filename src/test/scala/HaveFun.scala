@@ -1,7 +1,7 @@
 import org.scalatest.fixture.FunSuite
 import org.apache.spark.{SparkConf, SparkContext}
 
-class HaveFun extends FunSuite {
+class HaveFun extends  FunSuite {
 
   case class S(conf: SparkConf, sc: SparkContext)
 
