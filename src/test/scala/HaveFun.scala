@@ -82,9 +82,21 @@ class HaveFun extends FunSuite {
 
   test("reduce") { s=>
     val sc = s.sc
-    val rdd1 = sc.parallelize(List(20,32,4))
+    val rdd1 = sc.parallelize(List(20, 32, 4))
+
+    /**
+      * commutative and associative operations
+      */
     val sum = rdd1.reduce(_+_)
 
     assert(sum == 56)
+  }
+
+  test("top") { s=>
+    val sc = s.sc
+    val rdd1 = sc.parallelize(List(6, 27, 13, 19))
+    val leaders = rdd1.top(2)
+
+    assert(leaders(1) == 19)
   }
 }
