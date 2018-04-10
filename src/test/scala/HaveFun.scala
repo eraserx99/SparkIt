@@ -18,6 +18,10 @@ class HaveFun extends FunSuite {
     }
   }
 
+  /**
+    * Transformations
+    */
+
   test("groupByKey") { s =>
     val sc = s.sc
     val data = sc.parallelize(Array(('k', 5), ('s', 3), ('s', 4), ('p', 7), ('p', 5), ('t', 8), ('k', 6)), 3)
@@ -59,5 +63,28 @@ class HaveFun extends FunSuite {
       * result => Array((b,(2,7)), (A,(1,4)), (A,(1,6)), (c,(3,3)), (c,(3,8)))
       */
     assert(result.collect().length == 5)
+  }
+
+  /**
+    * Actions
+    */
+
+  test("countByValue") { s =>
+    val sc = s.sc
+    val data = sc.parallelize(Seq(1, 2, 3, 4, 5, 6, 6, 7))
+    val result = data.countByValue()
+
+    /**
+      * result => Map(5 -> 1, 1 -> 1, 6 -> 2, 2 -> 1, 7 -> 1, 3 -> 1, 4 -> 1)
+      */
+    assert(result(6) == 2)
+  }
+
+  test("reduce") { s=>
+    val sc = s.sc
+    val rdd1 = sc.parallelize(List(20,32,4))
+    val sum = rdd1.reduce(_+_)
+
+    assert(sum == 56)
   }
 }
