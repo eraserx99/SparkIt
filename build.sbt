@@ -10,6 +10,7 @@ libraryDependencies ++= {
   val sparkVer = "2.2.0"
   Seq(
     "org.apache.spark" %% "spark-core" % sparkVer,
-    "org.apache.spark" %% "spark-sql" % sparkVer
+    "org.apache.spark" %% "spark-sql" % sparkVer,
+    "org.scalatest" %% "scalatest" % "3.0.5" % Test
   )
 }
